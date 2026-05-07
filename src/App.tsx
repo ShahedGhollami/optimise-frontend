@@ -1,31 +1,15 @@
-import { useEffect, useState } from 'react';
-import { getProducts } from './api/productApi';
+import { useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import ProductTable from './components/ProductTable';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import type { Product, SearchParams } from './types/product';
+import { useProductStore } from './store/ProductStore';
 
 function App() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchProducts = async (params: SearchParams = { code: '', partOfDescription: '' }) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await getProducts(params);
-      setProducts(data);
-    } catch {
-      setError('Failed to load products. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { products, loading, error, fetchProducts } = useProductStore();
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts({ code: '', partOfDescription: '' });
+  }, [fetchProducts]);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
