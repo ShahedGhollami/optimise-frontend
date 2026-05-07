@@ -3,15 +3,15 @@ import axiosInstance from './axiosInstance';
 
 const clientApi = {
   get: <T = any>(url: string, config?: any): Promise<{ data: T }> =>
-    axiosInstance.get(`/client${url}`, config),
+    axiosInstance.get(`/api${url}`, config),
   post: <T = any>(url: string, data?: any, config?: any): Promise<{ data: T }> =>
-    axiosInstance.post(`/client${url}`, data, config),
+    axiosInstance.post(`/api${url}`, data, config),
   put: <T = any>(url: string, data?: any, config?: any): Promise<{ data: T }> =>
-    axiosInstance.put(`/client${url}`, data, config),
+    axiosInstance.put(`/api${url}`, data, config),
   patch: <T = any>(url: string, data?: any, config?: any): Promise<{ data: T }> =>
-    axiosInstance.patch(`/client${url}`, data, config),
+    axiosInstance.patch(`/api${url}`, data, config),
   delete: <T = any>(url: string, config?: any): Promise<{ data: T }> =>
-    axiosInstance.delete(`/client${url}`, config),
+    axiosInstance.delete(`/api${url}`, config),
 };
 
 export default clientApi;

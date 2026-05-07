@@ -3,7 +3,8 @@ import Cookies from 'js-cookie';
 import handleAxiosError from './axiosErrorHandler';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_KEY || 'http://localhost:5000',
+  // baseURL: import.meta.env.VITE_API_KEY || 'http://localhost:5000',
+  baseURL:  'http://localhost:5014/',
   headers: { 'Content-Type': 'application/json' },
 });
 

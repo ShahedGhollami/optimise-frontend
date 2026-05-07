@@ -7,6 +7,6 @@ export interface Product {
 }
 
 export interface SearchParams {
-  code: string;
-  partOfDescription: string;
+  code?: string;
+  partOfDescription?: string;
 }

@@ -10,13 +10,27 @@ export interface ResponseGetAllProducts {
 }
 
 export class ProductService {
+  private static cleanParams(payload?: getAllProductsPayload) {
+    if (!payload) return undefined;
+
+    return Object.fromEntries(
+      Object.entries(payload).filter(([, value]) => {
+        if (value === undefined || value === null) return false;
+        if (typeof value === 'string' && value.trim() === '') return false;
+        return true;
+      })
+    );
+  }
+
   static getAllProducts(
     payload?: getAllProductsPayload,
     signal?: AbortSignal
   ): Promise<ResponseGetAllProducts> {
+    const params = ProductService.cleanParams(payload);
+
     return clientApi
-      .get<ResponseGetAllProducts>(`/product`, {
-        params: payload,
+      .get<ResponseGetAllProducts>(`/Products`, {
+        params,
         signal,
       })
       .then((res) => res.data)
